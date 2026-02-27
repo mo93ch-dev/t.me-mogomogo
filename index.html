@@ -3,67 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>آریا پرداخت</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>ارتباط با ما</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--primary:#009688;
+--accent:#00C9A7;
+--bg:#f4fffb;
+--card:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Vazirmatn', sans-serif;
+}
+
+body{
+background: linear-gradient(135deg,#A8E6CF,#D4FC79,#C8E6C9);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:var(--card);
+width:90%;
+max-width:400px;
+padding:30px 20px;
+border-radius:25px;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+text-align:center;
+animation:fadeIn 0.8s ease;
+}
+
+.card h1{
+font-size:22px;
+margin-bottom:15px;
+color:#333;
+}
+
+.card p{
+font-size:14px;
+color:#666;
+margin-bottom:30px;
+line-height:1.8;
+}
+
+.telegram-btn{
+background:linear-gradient(135deg,var(--primary),var(--accent));
+color:#fff;
+border:none;
+padding:15px;
+width:100%;
+border-radius:50px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,150,136,0.4);
+transition:0.3s;
+}
+
+.telegram-btn:active{
+transform:scale(0.96);
+box-shadow:0 5px 15px rgba(0,150,136,0.3);
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-<div onclick="toggleMenu()">☰</div>
-<div>آریا پرداخت</div>
-<div>
-<span class="top-icon account" onclick="window.location.href='https://mo93ch-dev.github.io/esabdaritel'">💼</span>
-<img class="top-icon tabtoearn" onclick="window.location.href='https://mo93ch-dev.github.io/gametel'" src="https://cdn.imgurl.ir/uploads/d265288_3187.png">
-<img class="top-icon cloud" onclick="openCloud()" src="https://cdn.imgurl.ir/uploads/f730250_3200.png">
-</div>
-</header>
+<div class="card">
+<h1>ارتباط با ما</h1>
+<p>
+برای دریافت پشتیبانی، پیشنهادات یا سوالات خود  
+می‌توانید از طریق تلگرام با ما در تماس باشید.
+</p>
 
-<div class="main-menu" id="homePage">
-<a href="https://mo93ch-dev.github.io/havaletel" class="menu-item"><div class="icon-box"><span>💸</span></div><div class="title">حواله پول</div></a>
-<a href="https://mo93ch-dev.github.io/internettel" class="menu-item"><div class="icon-box"><span>🌐</span></div><div class="title">بسته انترنت</div></a>
-<a href="https://mo93ch-dev.github.io/credittel" class="menu-item"><div class="icon-box"><span>📱</span></div><div class="title">کریدیت مبایل</div></a>
-<a href="https://mo93ch-dev.github.io/mobadiltel" class="menu-item"><div class="icon-box"><span>💱</span></div><div class="title">مبدل واحد پول</div></a>
-<a href="#" class="menu-item" onclick="window.location.href='https://t.me/afgcoinnews'"><div class="icon-box"><img class="top-icon telegram" src="https://cdn.imgurl.ir/uploads/x908302_3211.png"></div><div class="title">تلگرام پریمیوم</div></a>
-<a href="#" class="menu-item" onclick="window.location.href='https://t.me/afgcoinnews'"><div class="icon-box"><span>💎</span></div><div class="title">الماس IMO</div></a>
-<a href="#" class="menu-item" onclick="window.location.href='https://t.me/afgcoinnews'"><div class="icon-box"><span>🎮</span></div><div class="title">یوسی پابجی</div></a>
-<a href="#" class="menu-item" onclick="window.location.href='https://t.me/afgcoinnews'"><div class="icon-box"><span>💰</span></div><div class="title">ارز دیجیتال</div></a>
-<a href="#" class="menu-item" onclick="window.location.href='https://t.me/afgcoinnews'"><div class="icon-box"><span>👤</span></div><div class="title">ثبت نام صرافان</div></a>
+<button class="telegram-btn" id="contactBtn">
+ارتباط از طریق تلگرام
+</button>
 </div>
 
-<div class="sidebar" id="sidebar">
-<div class="profile-box">
-<img id="profileImg" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="پروفایل" onclick="document.getElementById('fileInput').click();">
-<input type="text" id="profileName" placeholder="اسم خود را وارد کنید">
-<input type="file" id="fileInput" accept="image/*" style="display:none">
-</div>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+const tg = window.Telegram.WebApp;
 
-<button onclick="window.location.href='https://mo93ch-dev.github.io/esabdaritel'">💼 حسابداری</button>
-<button onclick="window.location.href='https://mo93ch-dev.github.io/mashinesabtel'">🧮 ماشین حساب</button>
-<button onclick="window.location.href='https://mo93ch-dev.github.io/mobadiltel'">💱 مبدل واحد پول</button>
+document.getElementById("contactBtn").addEventListener("click", function(){
+    if(tg){
+        tg.openTelegramLink("https://t.me/mogomogo");
+    } else {
+        window.open("https://t.me/mogomogo","_blank");
+    }
+});
+</script>
 
-<button id="settingsBtn">⚙️ تنظیمات</button>
-<div class="settings-sub" id="settingsSub">
-<button onclick="toggleTheme()">🌙 تغییر تم</button>
-</div>
-
-<button onclick="window.open('https://t.me/mogomogo','_blank')">📩 پشتیبانی</button>
-</div>
-
-<div class="cloud-page" id="cloudPage">
-<div class="chat-header">
-<span onclick="closeCloud()" style="cursor:pointer;font-weight:700;color:var(--back-color)">← بازگشت</span>
-<span>یاداشت های شما</span>
-</div>
-<div class="chat-body" id="chatBody"></div>
-<div class="chat-input"><input type="text" id="msgInput"><button onclick="sendMessage()">ارسال</button></div>
-</div>
-
-<!-- زیرنویس متحرک پایین صفحه -->
-<div id="bottomNotice">
-  <div id="scrollText">⚠️ توجه: تمام خدمات موجود در حال حاضر آزمایشی می‌باشند ⚠️</div>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
